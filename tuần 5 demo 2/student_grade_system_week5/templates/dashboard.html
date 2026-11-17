@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Tổng quan{% endblock %}
+{% block content %}
+<div class="page-head"><div><h1>Tổng quan</h1><p class="muted">Dữ liệu được đọc trực tiếp từ cơ sở dữ liệu SQLite.</p></div></div>
+<div class="cards">
+  <div class="stat"><span>Sinh viên</span><strong>{{ student_count }}</strong><small>Hồ sơ đã lưu</small></div>
+  <div class="stat"><span>Học phần đang dùng</span><strong>{{ course_count }}</strong><small>Danh mục học phần</small></div>
+  <div class="stat"><span>Lớp học phần</span><strong>{{ section_count }}</strong><small>Không tính lớp đã đóng</small></div>
+  <div class="stat"><span>Lượt đăng ký</span><strong>{{ enrollment_count }}</strong><small>Đang học</small></div>
+</div>
+{% if user.role != 'STUDENT' %}
+<div class="panel"><h2>Chức năng Demo 2 – Tuần 5</h2>
+<p><a class="btn primary" href="{% url 'grading:home' %}">Quản lý / nhập điểm</a>
+<a class="btn" href="{% url 'grading:search' %}">Tìm kiếm kết quả</a>
+<a class="btn" href="{% url 'grading:statistics' %}">Thống kê</a></p></div>
+{% else %}<div class="panel"><h2>Kết quả học tập</h2><a class="btn primary" href="{% url 'grading:my_grades' %}">Xem điểm của tôi</a></div>{% endif %}
+<div class="panel"><h2>Quy trình demo mốc 1</h2><ol><li>Tạo học phần và lớp học phần.</li><li>Tạo hồ sơ tối thiểu 3 sinh viên.</li><li>Gán sinh viên vào lớp; hệ thống từ chối cặp đăng ký trùng.</li><li>Tải lại trang hoặc đăng nhập lại để xác nhận dữ liệu còn trong CSDL.</li></ol></div>
+{% endblock %}
